@@ -176,7 +176,7 @@ const WebcamRecorder = ({ isRecording, onSaveRecord }) => {
       />
       {!isMobile && (
         <div className="absolute left-4 top-1/2 transform -translate-y-1/2 flex flex-col items-center">
-          <div className="mb-4">
+          <div className="mb-4 bg-rtw p-2 rounded-full">
             <FaCamera
               className="text-white cursor-pointer w-6 h-6 hover:text-hoverrtw"
               onClick={() => setShowCameraPopup(true)}
@@ -202,13 +202,13 @@ const WebcamRecorder = ({ isRecording, onSaveRecord }) => {
               </div>
             )}
           </div>
-          <div className="mb-4">
+          <div className="mb-4 bg-rtw p-2 rounded-full">
             <FaMicrophone
               className="text-white cursor-pointer w-6 h-6 hover:text-hoverrtw"
               onClick={() => setShowMicrophonePopup(true)}
             />
             {showMicrophonePopup && (
-              <div className="absolute top-12 left-5 bg-rtw p-5 rounded-xl shadow text-white overflow-y-auto max-h-80">
+              <div className="absolute top-12 left-5 bg-rtw p-5 rounded-xl shadow text-white overflow-y-auto max-h-80 bg-rtw p-5 rounded-xl shadow text-white">
                 <FaTimes
                   className="absolute top-2 right-2 cursor-pointer text-gray-500"
                   onClick={() => setShowMicrophonePopup(false)}

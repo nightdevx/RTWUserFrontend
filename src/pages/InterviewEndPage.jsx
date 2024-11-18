@@ -1,6 +1,6 @@
 const InterviewEndPage = () => {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-blue-400 to-blue-200">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-rtw to-hoverrtw">
       <div className="bg-white p-10 rounded-lg shadow-lg text-center max-w-md mx-auto">
         <h1 className="text-3xl font-extrabold mb-4 text-gray-800">
           Interview Completed
