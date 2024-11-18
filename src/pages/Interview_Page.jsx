@@ -128,7 +128,7 @@ const InterviewPage = () => {
 
   if (loading) {
     return (
-      <div className="flex flex-col items-center justify-center h-screen bg-green-500">
+      <div className="flex flex-col items-center justify-center h-screen">
         <Spinner />
       </div>
     );
@@ -136,7 +136,7 @@ const InterviewPage = () => {
 
   if (isEnded) {
     return (
-      <div className="flex flex-col items-center justify-center h-screen bg-red-500 m-auto">
+      <div className="flex flex-col items-center justify-center h-screen m-auto">
         <Spinner />
         <p className="text-black mt-4 text-2xl">Recording your interview...</p>
       </div>
