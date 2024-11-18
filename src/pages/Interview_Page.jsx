@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 // Components
 import { ApplicationFormPopup } from "../components/popups/ApplicationFormPopup";
@@ -19,16 +19,16 @@ const InterviewPage = () => {
   // Stores
   const { addVideo } = useVideoStore();
   const { updateApplication } = useApplicationsStore();
-  const { interview, fetchInterviewByName } = useInterviewStore();
+  const { interview, fetchInterviewByName, error, loading } =
+    useInterviewStore();
 
   // States
   const [applicationId, setApplicationId] = useState(null);
   const [progress, setProgress] = useState(0);
-  const [isInfoPopupOpen, setIsInfoPopupOpen] = useState(false);
+  const [isInfoPopupOpen, setIsInfoPopupOpen] = useState(true);
   const [isApplicationFormPopupOpen, setIsApplicationFormPopupOpen] =
     useState(false);
   const [permissionsGranted, setPermissionsGranted] = useState(false);
-  const [loading, setLoading] = useState(true);
   const [interviewTime, setInterviewTime] = useState(0);
   const [isRecording, setIsRecording] = useState(false);
   const [questions, setQuestions] = useState([]);
@@ -40,14 +40,13 @@ const InterviewPage = () => {
 
   useEffect(() => {
     fetchInterviewByName(title);
-    setLoading(false);
   }, [fetchInterviewByName, title]);
 
   useEffect(() => {
-    if (!loading && interview && interview.isActive === false) {
-      navigate("/");
+    if (!loading && (error || interview?.isActive === false)) {
+      navigate("/not-found");
     }
-  }, [loading, interview, navigate]);
+  }, [error, loading, interview, navigate]);
 
   useEffect(() => {
     if (interview) {
@@ -127,13 +126,13 @@ const InterviewPage = () => {
     }
   };
 
-  const formatTime = (time) => {
-    const minutes = Math.floor(time / 60);
-    const seconds = time % 60;
-    return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
-  };
-
-  const currentQuestion = questions[currentQuestionIndex];
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <Spinner />
+      </div>
+    );
+  }
 
   if (isEnded) {
     return (
