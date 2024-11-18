@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 // Components
 import { ApplicationFormPopup } from "../components/popups/ApplicationFormPopup";
@@ -38,8 +38,6 @@ const InterviewPage = () => {
   const [isWebcamPopupOpen, setIsWebcamPopupOpen] = useState(true);
   const [isEnded, setIsEnded] = useState(false);
 
-  const isDesktop = window.innerWidth >= 768;
-
   useEffect(() => {
     fetchInterviewByName(title);
     setLoading(false);
@@ -47,7 +45,7 @@ const InterviewPage = () => {
 
   useEffect(() => {
     if (!loading && interview && interview.isActive === false) {
-      navigate("/not-found");
+      navigate("/");
     }
   }, [loading, interview, navigate]);
 
