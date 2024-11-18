@@ -24,9 +24,9 @@ const InterviewPage = () => {
   // States
   const [applicationId, setApplicationId] = useState(null);
   const [progress, setProgress] = useState(0);
-  const [isInfoPopupOpen, setIsInfoPopupOpen] = useState(true);
+  const [isInfoPopupOpen, setIsInfoPopupOpen] = useState(false);
   const [isApplicationFormPopupOpen, setIsApplicationFormPopupOpen] =
-    useState(true);
+    useState(false);
   const [permissionsGranted, setPermissionsGranted] = useState(false);
   const [loading, setLoading] = useState(true);
   const [interviewTime, setInterviewTime] = useState(0);
