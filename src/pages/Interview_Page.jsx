@@ -35,7 +35,7 @@ const InterviewPage = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [currentQuestionTime, setCurrentQuestionTime] = useState(0);
   const [timerReset, setTimerReset] = useState(false);
-  const [isWebcamPopupOpen, setIsWebcamPopupOpen] = useState(false);
+  const [isWebcamPopupOpen, setIsWebcamPopupOpen] = useState(true);
   const [isEnded, setIsEnded] = useState(false);
 
   useEffect(() => {
@@ -235,4 +235,3 @@ const InterviewPage = () => {
 };
 
 export default InterviewPage;
-
