@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 // Components
 import { ApplicationFormPopup } from "../components/popups/ApplicationFormPopup";
@@ -25,17 +25,17 @@ const InterviewPage = () => {
   // States
   const [applicationId, setApplicationId] = useState(null);
   const [progress, setProgress] = useState(0);
-  const [isInfoPopupOpen, setIsInfoPopupOpen] = useState(true);
+  const [isInfoPopupOpen, setIsInfoPopupOpen] = useState(false);
   const [isApplicationFormPopupOpen, setIsApplicationFormPopupOpen] =
     useState(false);
-  const [permissionsGranted, setPermissionsGranted] = useState(false);
+  const [setPermissionsGranted] = useState(false);
   const [interviewTime, setInterviewTime] = useState(0);
   const [isRecording, setIsRecording] = useState(false);
   const [questions, setQuestions] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [currentQuestionTime, setCurrentQuestionTime] = useState(0);
   const [timerReset, setTimerReset] = useState(false);
-  const [isWebcamPopupOpen, setIsWebcamPopupOpen] = useState(true);
+  const [isWebcamPopupOpen, setIsWebcamPopupOpen] = useState(false);
   const [isEnded, setIsEnded] = useState(false);
 
   useEffect(() => {
@@ -128,7 +128,7 @@ const InterviewPage = () => {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-screen">
+      <div className="flex flex-col items-center justify-center h-screen">
         <Spinner />
       </div>
     );

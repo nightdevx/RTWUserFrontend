@@ -40,12 +40,12 @@ const QuestionCounter = ({
     <div className="p-6 bg-white shadow-xl rounded-b-xl min-h-[40%] xs:min-w-full 3xl:w-full border-t-4 border-gray-300">
       {(skippable || !showAtOnce) && (
         <>
-          <h2 className="text-xl font-semibold mb-4 text-gray-800 3xl:text-center">
+          <h2 className="text-2xl font-semibold mb-4 text-rtw 3xl:text-center">
             Question {currentQuestionIndex + 1}
           </h2>
           {questions[currentQuestionIndex] && (
-            <p className="text-lg text-gray-600 transition-opacity duration-500">
-              {questions[currentQuestionIndex].questionText}
+            <p className="text-lg text-black transition-opacity duration-500">
+              &gt; {questions[currentQuestionIndex].questionText}
             </p>
           )}
           {skippable && currentQuestionIndex < questions.length - 1 && (
@@ -59,17 +59,21 @@ const QuestionCounter = ({
             </div>
           )}
           {currentQuestionIndex === questions.length - 1 && (
-            <button
-              onClick={handleFinish}
-              disabled={isEnded}
-              className={`mt-4 px-5 py-2 rounded-lg text-white transition-colors duration-300 md:px-6 md:py-3 ${
-                isEnded
-                  ? "bg-gray-400 cursor-not-allowed"
-                  : "bg-green-600 hover:bg-green-700"
-              }`}
+            <div
+              className="flex justify-center items-center"
             >
-              Finish the interview
-            </button>
+              <button
+                onClick={handleFinish}
+                disabled={isEnded}
+                className={`mt-4 px-5 py-2 rounded-lg text-white transition-colors duration-300 md:px-6 md:py-3 ${
+                  isEnded
+                    ? "bg-gray-400 cursor-not-allowed"
+                    : "bg-green-600 hover:bg-green-700"
+                }`}
+              >
+                Finish the interview
+              </button>
+            </div>
           )}
 
           {/* Geçmiş soruları gösteren kısmı yorum satırına alındı */}
