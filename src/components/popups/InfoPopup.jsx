@@ -1,3 +1,5 @@
+import React from "react";
+
 const InfoPopup = ({ interview, onClose }) => {
   const totalQuestions =
     interview?.packages.reduce(
@@ -13,6 +15,37 @@ const InfoPopup = ({ interview, onClose }) => {
   }, 0);
 
   const totalDurationInMinutes = (totalDuration / 60).toFixed(1); // Dakika olarak ve 1 ondalık hane ile gösterim
+
+  // Kamera ve mikrofon izin durumunu izlemek için state kullanıyoruz
+  const [permissionsGranted, setPermissionsGranted] = React.useState(false);
+
+  // Kamera ve mikrofon izinlerini kontrol eden fonksiyon
+  const checkPermissions = () => {
+    navigator.mediaDevices
+      .getUserMedia({ video: true, audio: true })
+      .then(() => {
+        setPermissionsGranted(true); // İzin verilirse state güncellenir
+      })
+      .catch((err) => {
+        console.error("Permission denied:", err);
+        alert("Lütfen kamera ve mikrofon izinlerini verin.");
+        setPermissionsGranted(false); // İzin verilmezse state güncellenir
+      });
+  };
+
+  // Kullanıcı "I read and understood" butonuna bastığında izin durumuna göre popup kapanır
+  const handleClose = () => {
+    if (permissionsGranted) {
+      onClose(true); // İzin verilmişse popup kapanır
+    } else {
+      alert("Lütfen kamera ve mikrofon izinlerini verin.");
+    }
+  };
+
+  // Bileşen yüklendiğinde izinleri kontrol ediyoruz ancak popup'ı kapatmıyoruz
+  React.useEffect(() => {
+    checkPermissions(); // Bu sadece izin durumunu kontrol eder, popup kapatmaz
+  }, []);
 
   return (
     <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex justify-center items-center backdrop-blur-sm">
@@ -73,7 +106,7 @@ const InfoPopup = ({ interview, onClose }) => {
 
         <button
           className="bg-gradient-to-r from-[#30847f] to-[#3daaa3] text-white font-bold py-2 rounded-b-lg hover:from-[#3daaa3] hover:to-[#30847f] transition duration-300"
-          onClick={onClose}
+          onClick={handleClose}
         >
           I read and understood
         </button>

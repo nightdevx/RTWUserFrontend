@@ -163,6 +163,9 @@ const WebcamRecorder = ({ isRecording, onSaveRecord }) => {
     <div
       className={`flex h-[80%] w-full ${isMobile ? "fixed top-0 left-0" : ""}`}
     >
+      <div className="ml-[97%] mt-4 absolute z-50">
+        <div className={`w-6 h-6 bg-red-800 rounded-full ${isRecording && "animate-pulse" } `} ></div>
+      </div>
       <Webcam
         imageSmoothing={true}
         audio={true}
@@ -174,6 +177,7 @@ const WebcamRecorder = ({ isRecording, onSaveRecord }) => {
         }`}
         style={{ transform: "scaleX(-1)" }}
       />
+
       {!isMobile && (
         <div className="absolute left-4 top-1/2 transform -translate-y-1/2 flex flex-col items-center">
           <div className="mb-4 bg-rtw p-2 rounded-full">
@@ -208,7 +212,7 @@ const WebcamRecorder = ({ isRecording, onSaveRecord }) => {
               onClick={() => setShowMicrophonePopup(true)}
             />
             {showMicrophonePopup && (
-              <div className="absolute top-12 left-5 bg-rtw p-5 rounded-xl shadow text-white overflow-y-auto max-h-80 bg-rtw p-5 rounded-xl shadow text-white">
+              <div className="absolute top-12 left-5 bg-rtw p-5 rounded-xl shadow text-white overflow-y-auto max-h-80">
                 <FaTimes
                   className="absolute top-2 right-2 cursor-pointer text-gray-500"
                   onClick={() => setShowMicrophonePopup(false)}

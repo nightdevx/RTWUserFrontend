@@ -28,7 +28,7 @@ const InterviewPage = () => {
   const [isInfoPopupOpen, setIsInfoPopupOpen] = useState(true);
   const [isApplicationFormPopupOpen, setIsApplicationFormPopupOpen] =
     useState(true);
-  const [setPermissionsGranted] = useState(false);
+  const [permissionsGranted, setPermissionsGranted] = useState(false);
   const [interviewTime, setInterviewTime] = useState(0);
   const [isRecording, setIsRecording] = useState(false);
   const [questions, setQuestions] = useState([]);
@@ -86,20 +86,16 @@ const InterviewPage = () => {
     }
   };
 
-  const handleCloseInfoPopup = () => {
-    setIsInfoPopupOpen(false);
-    setIsApplicationFormPopupOpen(true);
+  const handleCloseInfoPopup = (permissionsGranted) => {
+    if (permissionsGranted) {
+      setIsInfoPopupOpen(false);
+      setIsApplicationFormPopupOpen(true);
+    }
   };
 
   const handleCloseApplicationFormPopup = () => {
     setIsApplicationFormPopupOpen(false);
-    navigator.mediaDevices
-      .getUserMedia({ video: true, audio: true })
-      .then(() => setPermissionsGranted(true))
-      .catch((err) => {
-        console.error("Permission denied:", err);
-        alert("Lütfen kamera ve mikrofon izinlerini verin.");
-      });
+    setPermissionsGranted(true);
   };
 
   const handleStartInterview = () => {
