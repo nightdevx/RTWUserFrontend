@@ -14,37 +14,32 @@ const InfoPopup = ({ interview, onClose }) => {
     return totalTime + packageTime;
   }, 0);
 
-  const totalDurationInMinutes = (totalDuration / 60).toFixed(1); // Dakika olarak ve 1 ondalık hane ile gösterim
+  const totalDurationInMinutes = (totalDuration / 60).toFixed(1);
 
-  // Kamera ve mikrofon izin durumunu izlemek için state kullanıyoruz
   const [permissionsGranted, setPermissionsGranted] = React.useState(false);
 
-  // Kamera ve mikrofon izinlerini kontrol eden fonksiyon
   const checkPermissions = () => {
     navigator.mediaDevices
       .getUserMedia({ video: true, audio: true })
       .then(() => {
-        setPermissionsGranted(true); // İzin verilirse state güncellenir
+        setPermissionsGranted(true);
       })
       .catch((err) => {
         console.error("Permission denied:", err);
         alert("Lütfen kamera ve mikrofon izinlerini verin.");
-        setPermissionsGranted(false); // İzin verilmezse state güncellenir
+        setPermissionsGranted(false);
       });
   };
-
-  // Kullanıcı "I read and understood" butonuna bastığında izin durumuna göre popup kapanır
   const handleClose = () => {
     if (permissionsGranted) {
-      onClose(true); // İzin verilmişse popup kapanır
+      onClose(true);
     } else {
       alert("Lütfen kamera ve mikrofon izinlerini verin.");
     }
   };
 
-  // Bileşen yüklendiğinde izinleri kontrol ediyoruz ancak popup'ı kapatmıyoruz
   React.useEffect(() => {
-    checkPermissions(); // Bu sadece izin durumunu kontrol eder, popup kapatmaz
+    checkPermissions();
   }, []);
 
   return (
