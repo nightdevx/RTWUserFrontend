@@ -26,7 +26,7 @@ const InfoPopup = ({ interview, onClose }) => {
       })
       .catch((err) => {
         console.error("Permission denied:", err);
-        alert("Lütfen kamera ve mikrofon izinlerini verin.");
+        alert("Please grant camera and microphone permissions.");
         setPermissionsGranted(false);
       });
   };
@@ -34,7 +34,7 @@ const InfoPopup = ({ interview, onClose }) => {
     if (permissionsGranted) {
       onClose(true);
     } else {
-      alert("Lütfen kamera ve mikrofon izinlerini verin.");
+      alert("Please grant camera and microphone permissions.");
     }
   };
 
